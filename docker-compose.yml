@@ -1,0 +1,47 @@
+services:
+  server:
+    build:
+      dockerfile: Dockerfile
+      args:
+        - FILE_DIRECTORY=./server
+    image: sparta-cicd-server
+
+  gateway:
+    build:
+      dockerfile: Dockerfile
+      args:
+        - FILE_DIRECTORY=./gateway
+    image: sparta-cicd-gateway
+    ports:
+      - "8080:8080"
+
+  user:
+    build:
+      dockerfile: Dockerfile
+      args:
+        - FILE_DIRECTORY=./user
+    image: sparta-cicd-user
+    environment:
+      DATABASE_USER: ${DB_USER}
+      DATABASE_PASSWORD: ${DB_PASSWORD}
+
+  company:
+    build:
+      dockerfile: Dockerfile
+      args:
+        - FILE_DIRECTORY=./company
+    image: sparta-cicd-company
+
+  order:
+    build:
+      dockerfile: Dockerfile
+      args:
+        - FILE_DIRECTORY=./order
+    image: sparta-cicd-order
+
+  product:
+    build:
+      dockerfile: Dockerfile
+      args:
+        - FILE_DIRECTORY=./product
+    image: sparta-cicd-product
