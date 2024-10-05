@@ -4,14 +4,14 @@ services:
       dockerfile: Dockerfile
       args:
         - FILE_DIRECTORY=./server
-    image: ${ECR_REGISTRY}/sparta-cicd-server
+    image: sparta-cicd-server
 
   gateway:
     build:
       dockerfile: Dockerfile
       args:
         - FILE_DIRECTORY=./gateway
-    image: ${ECR_REGISTRY}/sparta-cicd-gateway
+    image: sparta-cicd-gateway
     ports:
       - "8080:8080"
 
@@ -20,7 +20,7 @@ services:
       dockerfile: Dockerfile
       args:
         - FILE_DIRECTORY=./user
-    image: ${ECR_REGISTRY}/sparta-cicd-user
+    image: sparta-cicd-user
     environment:
       DATABASE_USER: ${DB_USER}
       DATABASE_PASSWORD: ${DB_PASSWORD}
@@ -30,18 +30,18 @@ services:
       dockerfile: Dockerfile
       args:
         - FILE_DIRECTORY=./company
-    image: ${ECR_REGISTRY}/sparta-cicd-company
+    image: sparta-cicd-company
 
   order:
     build:
       dockerfile: Dockerfile
       args:
         - FILE_DIRECTORY=./order
-    image: ${ECR_REGISTRY}/sparta-cicd-order
+    image: sparta-cicd-order
 
   product:
     build:
       dockerfile: Dockerfile
       args:
         - FILE_DIRECTORY=./product
-    image: ${ECR_REGISTRY}/sparta-cicd-product
+    image: sparta-cicd-product
