@@ -11,7 +11,8 @@ for service in "${services[@]}"
 do
   imageName="sparta-cicd-$service"
   # 이미지를 구분하기 위해서 latest 이외의 태그를 추가합니다.
-  docker tag "$imageName:latest" "$imageName:$commit_hash"
+  docker tag "$imageName:latest" "$ECR_REGISTRY/$ECR_REPOSITORY/$imageName:latest"
+  docker tag "$imageName:latest" "$ECR_REGISTRY/$ECR_REPOSITORY/$imageName:$commit_hash"
 
   # AWS ECR에 Push
   docker push "$ECR_REGISTRY/$ECR_REPOSITORY/$imageName:latest"
