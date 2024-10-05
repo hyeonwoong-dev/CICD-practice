@@ -81,7 +81,6 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
           ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
-          ECR_NAMESPACE: ${{ env.ECR_NAMESPACE }}
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
@@ -90,6 +89,9 @@ jobs:
           envs: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION, ECR_REGISTRY, ECR_NAMESPACE
           script: |
             aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+            
+            echo "ECR REGISTRY: $ECR_REGISTRY"
+            echo "ECR NAMESPACE: $ECR_NAMESPACE"
             
             sudo docker compose down
             sudo docker compose pull
