@@ -33,6 +33,7 @@ jobs:
 
   Docker:
     name: Build docker image and Push to registry
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
@@ -59,6 +60,7 @@ jobs:
 
   Deploy:
     name: Deploy
+    needs: Docker
     runs-on: ubuntu-latest
 
     steps:
