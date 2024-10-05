@@ -7,7 +7,7 @@ on:
 
 env:
   AWS_REGION: ap-northeast-2
-  ECR_REPOSITORY: hyeonwoong/cicd
+  ECR_NAMESPACE: sparta
 
 jobs:
   build:

@@ -9,7 +9,7 @@ aws ecr get-login-password --region "$AWS_REGION" | docker login --username AWS 
 
 for service in "${services[@]}"
 do
-  imageName="$ECR_REGISTRY/$ECR_REPOSITORY/$service"
+  imageName="$ECR_REGISTRY/$ECR_NAMESPACE/$service"
   # 이미지를 구분하기 위해서 latest 이외의 태그를 추가합니다.
   docker tag "$service:latest" "$imageName:latest"
   docker tag "$service:latest" "$imageName:$commit_hash"
