@@ -22,23 +22,23 @@ services:
         - FILE_DIRECTORY=./user
     image: $ECR_REGISTRY/$ECR_NAMESPACE/user
 
-  company:
-    build:
-      dockerfile: Dockerfile
-      args:
-        - FILE_DIRECTORY=./company
-    image: $ECR_REGISTRY/$ECR_NAMESPACE/company
-
-  order:
-    build:
-      dockerfile: Dockerfile
-      args:
-        - FILE_DIRECTORY=./order
-    image: $ECR_REGISTRY/$ECR_NAMESPACE/order
-
-  product:
-    build:
-      dockerfile: Dockerfile
-      args:
-        - FILE_DIRECTORY=./product
-    image: $ECR_REGISTRY/$ECR_NAMESPACE/product
+#  company:
+#    build:
+#      dockerfile: Dockerfile
+#      args:
+#        - FILE_DIRECTORY=./company
+#    image: $ECR_REGISTRY/$ECR_NAMESPACE/company
+#
+#  order:
+#    build:
+#      dockerfile: Dockerfile
+#      args:
+#        - FILE_DIRECTORY=./order
+#    image: $ECR_REGISTRY/$ECR_NAMESPACE/order
+#
+#  product:
+#    build:
+#      dockerfile: Dockerfile
+#      args:
+#        - FILE_DIRECTORY=./product
+#    image: $ECR_REGISTRY/$ECR_NAMESPACE/product

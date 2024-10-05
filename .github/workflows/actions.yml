@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        service: [server, company, order, user, gateway, product]
+        service: [server, user, gateway] # company, order, product 는 free tier 메모리 이슈로 잠시 제외
 
     steps:
       - name: Checkout
