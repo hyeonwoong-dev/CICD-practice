@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        service: [server, user, gateway] # company, order, product 는 free tier 메모리 이슈로 잠시 제외
+        service: [server, user, gateway]
 
     steps:
       - name: Checkout
@@ -90,7 +90,7 @@ jobs:
           script: |
             aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
             
-            sudo docker compose down
-            sudo -E docker compose pull
-            sudo -E docker compose up -d
+            docker compose down
+            docker compose pull
+            docker compose up -d
           
