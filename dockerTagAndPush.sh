@@ -4,9 +4,6 @@ services=("server" "gateway" "user") # company, product, order 는 free tier 이
 # 도커 이미지에 commit hash를 기반으로한 이미지 태그를 설정합니다.
 commit_hash=$(git rev-parse --short HEAD)
 
-# AWS ECR 연결
-aws ecr get-login-password --region "$AWS_REGION" | docker login --username AWS --password-stdin "$ECR_REGISTRY"
-
 for service in "${services[@]}"
 do
   imageName="$ECR_REGISTRY/$ECR_NAMESPACE/$service"
