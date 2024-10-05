@@ -4,14 +4,14 @@ services:
       dockerfile: Dockerfile
       args:
         - FILE_DIRECTORY=./server
-    image: server
+    image: $ECR_REGISTRY/$ECR_NAMESPACE/server
 
   gateway:
     build:
       dockerfile: Dockerfile
       args:
         - FILE_DIRECTORY=./gateway
-    image: gateway
+    image: $ECR_REGISTRY/$ECR_NAMESPACE/gateway
     ports:
       - "8080:8080"
 
@@ -20,28 +20,25 @@ services:
       dockerfile: Dockerfile
       args:
         - FILE_DIRECTORY=./user
-    image: user
-    environment:
-      DATABASE_USER: ${DB_USER}
-      DATABASE_PASSWORD: ${DB_PASSWORD}
+    image: $ECR_REGISTRY/$ECR_NAMESPACE/user
 
   company:
     build:
       dockerfile: Dockerfile
       args:
         - FILE_DIRECTORY=./company
-    image: company
+    image: $ECR_REGISTRY/$ECR_NAMESPACE/company
 
   order:
     build:
       dockerfile: Dockerfile
       args:
         - FILE_DIRECTORY=./order
-    image: order
+    image: $ECR_REGISTRY/$ECR_NAMESPACE/order
 
   product:
     build:
       dockerfile: Dockerfile
       args:
         - FILE_DIRECTORY=./product
-    image: product
+    image: $ECR_REGISTRY/$ECR_NAMESPACE/product
