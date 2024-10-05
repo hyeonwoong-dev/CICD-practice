@@ -9,14 +9,14 @@ aws ecr get-login-password --region "$AWS_REGION" | docker login --username AWS 
 
 for service in "${services[@]}"
 do
-  imageName="sparta-cicd-$service"
+  imageName="$ECR_REGISTRY/$ECR_REPOSITORY/$service"
   # 이미지를 구분하기 위해서 latest 이외의 태그를 추가합니다.
-  docker tag "$imageName:latest" "$ECR_REGISTRY/$ECR_REPOSITORY/$imageName:latest"
-  docker tag "$imageName:latest" "$ECR_REGISTRY/$ECR_REPOSITORY/$imageName:$commit_hash"
+  docker tag "$service:latest" "$imageName:latest"
+  docker tag "$service:latest" "$imageName:$commit_hash"
 
   # AWS ECR에 Push
-  docker push "$ECR_REGISTRY/$ECR_REPOSITORY/$imageName:latest"
-  docker push "$ECR_REGISTRY/$ECR_REPOSITORY/$imageName:$commit_hash"
+  docker push "$imageName:latest"
+  docker push "$imageName:$commit_hash"
 
   echo "$service image is built and pushed to AWS ECR"
 done
