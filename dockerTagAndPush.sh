@@ -5,7 +5,7 @@ services=("server" "company" "gateway" "order" "product" "user")
 commit_hash=$(git rev-parse --short HEAD)
 
 # AWS ECR 연결
-aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+aws ecr get-login-password --region "$AWS_REGION" | docker login --username AWS --password-stdin "$ECR_REGISTRY"
 
 for service in "${services[@]}"
 do
@@ -14,8 +14,8 @@ do
   docker tag "$imageName:latest" "$imageName:$commit_hash"
 
   # AWS ECR에 Push
-  docker push "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY/$imageName:latest"
-  docker push "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY/$imageName:$commit_hash"
+  docker push "$ECR_REGISTRY/$ECR_REPOSITORY/$imageName:latest"
+  docker push "$ECR_REGISTRY/$ECR_REPOSITORY/$imageName:$commit_hash"
 
   echo "$service image is built and pushed to AWS ECR"
 done
