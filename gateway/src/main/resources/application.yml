@@ -12,21 +12,6 @@ spring:
           predicates:
             - Path=/users/**
 
-        - id: company-service
-          uri: lb://company-service
-          predicates:
-            - Path=/companies/**
-
-        - id: order-service
-          uri: lb://order-service
-          predicates:
-            - Path=/orders/**
-
-        - id: product-service
-          uri: lb://product-service
-          predicates:
-            - Path=/products/**
-
 eureka:
   client:
     service-url:
